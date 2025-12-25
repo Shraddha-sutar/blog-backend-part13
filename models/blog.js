@@ -2,9 +2,7 @@ const { DataTypes } = require('sequelize')
 const sequelize = require('../utils/db')
 
 const Blog = sequelize.define('Blog', {
-  author: {
-    type: DataTypes.STRING
-  },
+  author: DataTypes.STRING,
   title: {
     type: DataTypes.STRING,
     allowNull: false
