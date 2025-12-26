@@ -7,6 +7,8 @@ const blogRouter = require('./controllers/blogs')
 const userRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const authorsRouter = require('./controllers/authors')
+const readingListRouter = require('./controllers/readinglists')
+const logoutRouter = require('./controllers/logout')
 
 const errorHandler = require('./middleware/errorHandler')
 const { sequelize, connectToDatabase } = require('./utils/db')
@@ -18,16 +20,18 @@ app.use(bodyParser.json())
 
 // Routes
 app.use('/api/login', loginRouter)
+app.use('/api/logout', logoutRouter)
 app.use('/api/blogs', blogRouter)
 app.use('/api/users', userRouter)
 app.use('/api/authors', authorsRouter)
+app.use('/api/readinglists', readingListRouter)
 
 // Test route
 app.get('/', (req, res) => {
   res.send('Blog API running')
 })
 
-// Error handler (ALWAYS last)
+// Centralized error handler (ALWAYS last)
 app.use(errorHandler)
 
 // ✅ Correct startup pattern
